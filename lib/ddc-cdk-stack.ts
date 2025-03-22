@@ -1,16 +1,18 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-// import * as sqs from 'aws-cdk-lib/aws-sqs';
+import { LambdaPipeline } from './lambda-pipeline';
 
 export class DdcCdkStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    // The code that defines your stack goes here
-
-    // example resource
-    // const queue = new sqs.Queue(this, 'DdcCdkQueue', {
-    //   visibilityTimeout: cdk.Duration.seconds(300)
-    // });
+    const ddbLambda = new LambdaPipeline(this, "DdcLambdaPipeline", {
+      region: "us-east-2",
+      functionName: "DdcLambda",
+      githubOwner: "DuckDuckCode-tech",
+      githubRepo: "lambda",
+      githubBranch: "main",
+      timeout: cdk.Duration.minutes(10),
+    })
   }
 }
