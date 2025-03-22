@@ -21,5 +21,7 @@ export class DdcCdkStack extends cdk.Stack {
       tableName: 'DDCTable',
       billingMode: ddb.BillingMode.PAY_PER_REQUEST,
     });
+
+    table.grantReadWriteData(ddbLambda.lambdaFunction);
   }
 }
