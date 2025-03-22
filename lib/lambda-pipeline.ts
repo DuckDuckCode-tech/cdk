@@ -68,7 +68,7 @@ export class LambdaPipeline extends Construct {
 				phases: {
 					install: {
 						commands: [
-							`export GITHUB_TOKEN=$(aws secretsmanager get-secret-value --secret-id github-token --region ${region} --query SecretString --output text | jq -r '."github-token"')`,
+							`export GITHUB_TOKEN=$(aws secretsmanager get-secret-value --secret-id ddc-codepipeline --region ${region} --query SecretString --output text)`,
 							'git config --global url."https://$GITHUB_TOKEN@github.com/".insteadOf https://github.com/',
 							'git config --global url."https://$GITHUB_TOKEN@github.com/".insteadOf ssh://git@github.com/',
 							"npm install"
