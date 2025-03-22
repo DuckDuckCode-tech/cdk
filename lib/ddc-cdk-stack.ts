@@ -7,7 +7,7 @@ export class DdcCdkStack extends cdk.Stack {
     super(scope, id, props);
 
     const ddbLambda = new LambdaPipeline(this, "DdcLambdaPipeline", {
-      region: "us-east-2",
+      region: "us-east-1",
       functionName: "DdcLambda",
       githubOwner: "DuckDuckCode-tech",
       githubRepo: "lambda",
